@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAÉ OS — Espace Personnel</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Plus Jakarta Sans & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FBF9F5',
+                            100: '#F5F2EC',
+                            200: '#EAE5DB',
+                            300: '#DDD5C7'
+                        },
+                        sage: {
+                            50: '#F2F5F2',
+                            100: '#E8EFE8',
+                            200: '#C2D1C2',
+                            500: '#8A9A86',
+                            700: '#708238',
+                            800: '#4A5844'
+                        },
+                        charcoal: {
+                            500: '#4A4A4A',
+                            800: '#2C2C2C',
+                            900: '#1E1E1E'
+                        },
+                        terracotta: {
+                            100: '#FAECE7',
+                            400: '#E88D6A',
+                            500: '#D97757',
+                            600: '#B85838'
+                        },
+                        borderSoft: '#E5E0D8'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FBF9F5;
+            color: #2C2C2C;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Custom subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E5E0D8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C2D1C2;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E5E0D8;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: #C2D1C2;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Pulse aura effect */
+        .aura-glow {
+            box-shadow: 0 0 35px -5px rgba(138, 154, 134, 0.15);
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col md:flex-row overflow-x-hidden">
+
+    <!-- SIDEBAR / NAVIGATION -->
+    <aside class="w-full md:w-64 bg-cream-100/80 border-r border-borderSoft p-6 flex flex-col justify-between shrink-0">
+        <div>
+            <!-- Logo & Identity -->
+            <div class="flex items-center gap-3 mb-8">
+                <div class="w-9 h-9 rounded-full bg-sage-500 text-white flex items-center justify-center font-semibold text-sm tracking-widest shadow-sm">
+                    M
+                </div>
+                <div>
+                    <h1 class="font-bold text-base tracking-wider text-charcoal-900">MAÉ OS</h1>
+                    <span class="text-[11px] uppercase tracking-widest text-sage-800 font-medium">Espace Personnel</span>
+                </div>
+            </div>
+
+            <!-- Main Nav Links -->
+            <nav class="space-y-1.5 text-sm font-medium">
+                <a href="#" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl bg-sage-100 text-sage-800 font-semibold transition-all">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4 stroke-[2.2]"></i>
+                    Vue D'ensemble
+                </a>
+                <a href="#projets" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-charcoal-500 hover:text-charcoal-900 hover:bg-cream-200/50 transition-all">
+                    <i data-lucide="folder-kanban" class="w-4 h-4 stroke-[1.8]"></i>
+                    Mes Projets
+                </a>
+                <a href="#epargne" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-charcoal-500 hover:text-charcoal-900 hover:bg-cream-200/50 transition-all">
+                    <i data-lucide="wallet" class="w-4 h-4 stroke-[1.8]"></i>
+                    Finances & Épargne
+                </a>
+                <a href="#idees" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-charcoal-500 hover:text-charcoal-900 hover:bg-cream-200/50 transition-all">
+                    <i data-lucide="sparkles" class="w-4 h-4 stroke-[1.8]"></i>
+                    Idées & Inspiration
+                </a>
+                <a href="#destinations" class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-charcoal-500 hover:text-charcoal-900 hover:bg-cream-200/50 transition-all">
+                    <i data-lucide="compass" class="w-4 h-4 stroke-[1.8]"></i>
+                    Destinations
+                </a>
+            </nav>
+        </div>
+
+        <!-- Footer Info / Energy Indicator -->
+        <div class="mt-8 pt-6 border-t border-borderSoft/60 space-y-4">
+            <div class="p-3.5 rounded-2xl bg-white/60 border border-borderSoft/80">
+                <div class="flex items-center justify-between text-xs text-charcoal-500 mb-1.5">
+                    <span class="font-medium">État du jour</span>
+                    <span class="w-2 h-2 rounded-full bg-sage-500 animate-pulse"></span>
+                </div>
+                <p class="text-xs font-semibold text-charcoal-800">Énergie fluide & calme</p>
+            </div>
+            <div class="text-[11px] text-charcoal-500 flex items-center justify-between px-1">
+                <span>Dimanche 25 Oct.</span>
+                <span>Paris / Rer</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-10 space-y-8">
+
+        <!-- HEADER SECTION -->
+        <header class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2 border-b border-borderSoft/40">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-medium mb-3">
+                    <i data-lucide="leaf" class="w-3.5 h-3.5"></i>
+                    Rythme soutenable • Objectifs clairs
+                </div>
+                <h2 class="text-2xl md:text-3xl font-serif font-medium text-charcoal-900">
+                    Bienvenue dans ton espace, Mayla <span class="inline-block animate-wave">🌿</span>
+                </h2>
+                <p class="text-sm text-charcoal-500 mt-1 max-w-xl leading-relaxed">
+                    Chaque petite action compte. Avance à ton propre tempo, sans pression de performance.
+                </p>
+            </div>
+
+            <!-- Quick Action / Mood selector -->
+            <div id="intention-selector" class="bg-white/80 border border-borderSoft rounded-2xl p-1.5 flex items-center gap-1 shadow-sm">
+                <button onclick="setIntention('avancer')" id="btn-avancer" class="px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all bg-sage-500 text-white shadow-sm">
+                    <span>🚀</span> Avancer
+                </button>
+                <button onclick="setIntention('explorer')" id="btn-explorer" class="px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all text-charcoal-500 hover:bg-cream-100">
+                    <span>🧭</span> Explorer
+                </button>
+                <button onclick="setIntention('repos')" id="btn-repos" class="px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all text-charcoal-500 hover:bg-cream-100">
+                    <span>☕</span> Me reposer
+                </button>
+            </div>
+        </header>
+
+        <!-- Dynamic Banner Message based on Intention -->
+        <div id="intention-banner" class="p-4 rounded-2xl bg-sage-50 border border-sage-200/60 flex items-center gap-3 text-xs md:text-sm text-sage-800 transition-all">
+            <i data-lucide="sparkle" class="w-4 h-4 shrink-0 text-sage-700"></i>
+            <span id="intention-text">Focus du jour : Priorité à la régularité douce sur tes modules de formation et le suivi administratif.</span>
+        </div>
+
+        <!-- BENTO GRID SYSTEM -->
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
+
+            <!-- 1. METEO GRENOBLE CARD -->
+            <div class="glass-card rounded-3xl p-5 flex flex-col justify-between relative overflow-hidden group">
+                <div class="absolute -right-4 -bottom-4 w-28 h-28 bg-sage-100 rounded-full blur-2xl group-hover:bg-sage-200 transition-all"></div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span class="text-[11px] font-semibold text-charcoal-500 uppercase tracking-wider">Aspiration / Respiration</span>
+                        <h3 class="text-lg font-bold text-charcoal-900 mt-0.5">Grenoble & Alpes</h3>
+                    </div>
+                    <div class="p-2 rounded-2xl bg-cream-100 text-sage-800">
+                        <i data-lucide="mountain" class="w-5 h-5"></i>
+                    </div>
+                </div>
+                <div class="my-4">
+                    <div class="flex items-baseline gap-2">
+                        <span class="text-3xl font-light text-charcoal-900">18°C</span>
+                        <span class="text-xs font-medium text-sage-800">• Ensoleillé</span>
+                    </div>
+                    <p class="text-xs text-charcoal-500 mt-1">Brise douce sur Belledonne. Air pur de montagne.</p>
+                </div>
+                <div class="pt-3 border-t border-borderSoft/60 flex items-center justify-between text-[11px] text-charcoal-500">
+                    <span>Qualité de l'air: Excellente</span>
+                    <span class="text-terracotta-500 font-medium">Bientôt là-bas</span>
+                </div>
+            </div>
+
+            <!-- 2. HEBDOMADAIRE / CALENDRIER DOUX -->
+            <div class="glass-card rounded-3xl p-5 md:col-span-2 flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4 text-sage-800"></i>
+                        <h3 class="text-sm font-semibold text-charcoal-900">Cap de la Semaine</h3>
+                    </div>
+                    <span class="text-xs text-charcoal-500">Semaine 43</span>
+                </div>
+
+                <!-- Days of week minimalist pipeline -->
+                <div class="grid grid-cols-7 gap-1.5 my-2">
+                    <div class="p-2 text-center rounded-xl bg-cream-100/60 border border-borderSoft/40">
+                        <span class="block text-[10px] font-medium text-charcoal-500">LUN</span>
+                        <span class="block text-xs font-bold text-charcoal-800 mt-1">26</span>
+                        <span class="w-1.5 h-1.5 bg-sage-500 rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                    <div class="p-2 text-center rounded-xl bg-cream-100/60 border border-borderSoft/40">
+                        <span class="block text-[10px] font-medium text-charcoal-500">MAR</span>
+                        <span class="block text-xs font-bold text-charcoal-800 mt-1">27</span>
+                        <span class="w-1.5 h-1.5 bg-sage-500 rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                    <div class="p-2 text-center rounded-xl bg-cream-100/60 border border-borderSoft/40">
+                        <span class="block text-[10px] font-medium text-charcoal-500">MER</span>
+                        <span class="block text-xs font-bold text-charcoal-800 mt-1">28</span>
+                        <span class="w-1.5 h-1.5 bg-transparent rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                    <div class="p-2 text-center rounded-xl bg-cream-100/60 border border-borderSoft/40">
+                        <span class="block text-[10px] font-medium text-charcoal-500">JEU</span>
+                        <span class="block text-xs font-bold text-charcoal-800 mt-1">29</span>
+                        <span class="w-1.5 h-1.5 bg-terracotta-400 rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                    <div class="p-2 text-center rounded-xl bg-cream-100/60 border border-borderSoft/40">
+                        <span class="block text-[10px] font-medium text-charcoal-500">VEN</span>
+                        <span class="block text-xs font-bold text-charcoal-800 mt-1">30</span>
+                        <span class="w-1.5 h-1.5 bg-sage-500 rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                    <div class="p-2 text-center rounded-xl bg-cream-100/60 border border-borderSoft/40">
+                        <span class="block text-[10px] font-medium text-charcoal-500">SAM</span>
+                        <span class="block text-xs font-bold text-charcoal-800 mt-1">31</span>
+                        <span class="w-1.5 h-1.5 bg-transparent rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                    <div class="p-2 text-center rounded-xl bg-sage-500 text-white shadow-sm ring-2 ring-sage-200">
+                        <span class="block text-[10px] font-medium text-sage-100">DIM</span>
+                        <span class="block text-xs font-bold mt-1">01</span>
+                        <span class="w-1.5 h-1.5 bg-white rounded-full mx-auto mt-1.5"></span>
+                    </div>
+                </div>
+
+                <div class="mt-2 text-xs text-charcoal-500 flex items-center justify-between bg-white/50 p-2.5 rounded-xl border border-borderSoft/50">
+                    <span class="truncate">📍 Évaluation pratiques jetons & cartes • Club Pierre Charron</span>
+                    <span class="text-sage-800 font-semibold shrink-0">Jeudi 14:00</span>
+                </div>
+            </div>
+
+            <!-- 3. RAPPEL INTENTION / CITATION -->
+            <div class="glass-card rounded-3xl p-5 flex flex-col justify-between bg-gradient-to-br from-cream-100 to-sage-50">
+                <div class="flex items-center gap-2 text-terracotta-500">
+                    <i data-lucide="quote" class="w-4 h-4"></i>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider">Patience & Rigueur</span>
+                </div>
+                <p class="text-xs font-serif italic text-charcoal-800 my-3 leading-relaxed">
+                    « L'excellence n'est pas un acte d'un jour, mais une habitude de chaque instant maîtrisée dans le calme. »
+                </p>
+                <div class="text-[11px] text-charcoal-500 font-medium">
+                    Ancrage pour la semaine
+                </div>
+            </div>
+
+            <!-- SECTION : MES PROJETS (FULL WIDTH ROW) -->
+            <div id="projets" class="md:col-span-3 lg:col-span-4 space-y-4 pt-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="layers" class="w-5 h-5 text-sage-800"></i>
+                        <h3 class="text-lg font-serif font-semibold text-charcoal-900">Mes Projets & Trajectoires</h3>
+                    </div>
+                    <span class="text-xs text-charcoal-500">5 Piliers en cours</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+
+                    <!-- Projet 1: Croupière -->
+                    <div class="glass-card rounded-2xl p-4 flex flex-col justify-between hover:translate-y-[-2px]">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-0.5 rounded-md bg-terracotta-100 text-terracotta-600 text-[10px] font-semibold">Priorité 1</span>
+                                <i data-lucide="club" class="w-4 h-4 text-charcoal-500"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-charcoal-900">Croupière & Casino</h4>
+                            <p class="text-xs text-charcoal-500 mt-1">Club Pierre Charron • Formation 12 sem.</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between text-[11px] text-charcoal-500 mb-1">
+                                <span>Maîtrise cartes</span>
+                                <span class="font-semibold text-charcoal-800">Sem. 1/12</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-terracotta-500 h-full rounded-full" style="width: 15%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2: Conformité -->
+                    <div class="glass-card rounded-2xl p-4 flex flex-col justify-between hover:translate-y-[-2px]">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-0.5 rounded-md bg-sage-100 text-sage-800 text-[10px] font-semibold">Ancrage</span>
+                                <i data-lucide="shield-check" class="w-4 h-4 text-charcoal-500"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-charcoal-900">Conformité & Risques</h4>
+                            <p class="text-xs text-charcoal-500 mt-1">Certification AMF • Réglementation</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between text-[11px] text-charcoal-500 mb-1">
+                                <span>Socle acquis</span>
+                                <span class="font-semibold text-charcoal-800">80%</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-sage-500 h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3: Data & Analytics -->
+                    <div class="glass-card rounded-2xl p-4 flex flex-col justify-between hover:translate-y-[-2px]">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-0.5 rounded-md bg-cream-200 text-charcoal-800 text-[10px] font-semibold">Compétence</span>
+                                <i data-lucide="bar-chart-3" class="w-4 h-4 text-charcoal-500"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-charcoal-900">Data & Analytics</h4>
+                            <p class="text-xs text-charcoal-500 mt-1">Google Data Cert. • SQL / Python</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between text-[11px] text-charcoal-500 mb-1">
+                                <span>Projets pratiques</span>
+                                <span class="font-semibold text-charcoal-800">65%</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-charcoal-800 h-full rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 4: Micro-industrie -->
+                    <div class="glass-card rounded-2xl p-4 flex flex-col justify-between hover:translate-y-[-2px]">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-0.5 rounded-md bg-sage-100 text-sage-800 text-[10px] font-semibold">Long terme</span>
+                                <i data-lucide="factory" class="w-4 h-4 text-charcoal-500"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-charcoal-900">Micro-industrie</h4>
+                            <p class="text-xs text-charcoal-500 mt-1">Projet Madagascar • Impact</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between text-[11px] text-charcoal-500 mb-1">
+                                <span>Étude de marché</span>
+                                <span class="font-semibold text-charcoal-800">25%</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-sage-500 h-full rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projet 5: Voyages -->
+                    <div class="glass-card rounded-2xl p-4 flex flex-col justify-between hover:translate-y-[-2px]">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2 py-0.5 rounded-md bg-terracotta-100 text-terracotta-600 text-[10px] font-semibold">Équilibre</span>
+                                <i data-lucide="plane" class="w-4 h-4 text-charcoal-500"></i>
+                            </div>
+                            <h4 class="font-bold text-sm text-charcoal-900">Voyages & Évasions</h4>
+                            <p class="text-xs text-charcoal-500 mt-1">Permis A2 (2028) • Escapades</p>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex justify-between text-[11px] text-charcoal-500 mb-1">
+                                <span>Financement</span>
+                                <span class="font-semibold text-charcoal-800">30%</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-terracotta-400 h-full rounded-full" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECTION : FINANCES & SUIVI D'ÉPARGNE FICTIF -->
+            <div id="epargne" class="md:col-span-2 lg:col-span-2 glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 rounded-xl bg-sage-100 text-sage-800">
+                                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="font-bold text-base text-charcoal-900">Tableau de Bord Épargne</h3>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-cream-100 text-charcoal-500 font-medium">Fictif / Projection</span>
+                    </div>
+
+                    <!-- Total Balance -->
+                    <div class="bg-white/60 p-4 rounded-2xl border border-borderSoft/60 mb-5">
+                        <span class="text-xs text-charcoal-500 font-medium">Capital Global Épargné</span>
+                        <div class="text-2xl font-bold text-charcoal-900 mt-1">
+                            4 850,00 € <span class="text-xs font-normal text-sage-800 bg-sage-100 px-2 py-0.5 rounded-full inline-block ml-2">+320 € ce mois</span>
+                        </div>
+                    </div>
+
+                    <!-- Savings Breakdown Targets -->
+                    <div class="space-y-3.5">
+                        <!-- Goal 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-charcoal-800">🛡️ Fond de Sécurité & Autonomie</span>
+                                <span class="text-charcoal-500">2 500 € / 4 000 €</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-sage-500 h-full rounded-full" style="width: 62.5%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Goal 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-charcoal-800">🏍️ Permis A2 & Équipement</span>
+                                <span class="text-charcoal-500">850 € / 1 800 €</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-terracotta-400 h-full rounded-full" style="width: 47%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Goal 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="font-medium text-charcoal-800">🇲🇬 Fonds Amorce Projet Madagascar</span>
+                                <span class="text-charcoal-500">1 500 € / 5 000 €</span>
+                            </div>
+                            <div class="w-full bg-cream-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-charcoal-800 h-full rounded-full" style="width: 30%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-borderSoft/60 flex items-center justify-between text-xs text-charcoal-500">
+                    <span>Prochain virement : 1er Novembre</span>
+                    <a href="#" class="text-sage-800 font-semibold hover:underline">Gérer la répartition</a>
+                </div>
+            </div>
+
+            <!-- SECTION : MES IDÉES SPONTANÉES (SCRATCHPAD) -->
+            <div id="idees" class="md:col-span-1 lg:col-span-2 glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <div class="p-2 rounded-xl bg-terracotta-100 text-terracotta-600">
+                                <i data-lucide="lightbulb" class="w-4 h-4"></i>
+                            </div>
+                            <h3 class="font-bold text-base text-charcoal-900">Idées Spontanées</h3>
+                        </div>
+                        <span class="text-xs text-charcoal-500">Capture rapide</span>
+                    </div>
+
+                    <!-- Input Box -->
+                    <div class="flex gap-2 mb-4">
+                        <input type="text" id="idea-input" placeholder="Note une pensée, une intuition..." 
+                            class="flex-1 px-3.5 py-2 text-xs rounded-xl bg-white/80 border border-borderSoft focus:outline-none focus:border-sage-500 transition-all">
+                        <button onclick="addIdea()" class="px-3 py-2 bg-sage-500 hover:bg-sage-700 text-white text-xs font-semibold rounded-xl transition-all flex items-center gap-1">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic List -->
+                    <ul id="idea-list" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                        <li class="p-2.5 rounded-xl bg-white/60 border border-borderSoft/50 text-xs text-charcoal-800 flex items-center justify-between group">
+                            <span>💡 Regarder la réglementation des jetons numériques vs physiques</span>
+                            <button onclick="this.parentElement.remove()" class="text-charcoal-500 hover:text-terracotta-500 opacity-0 group-hover:opacity-100 transition-all">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </li>
+                        <li class="p-2.5 rounded-xl bg-white/60 border border-borderSoft/50 text-xs text-charcoal-800 flex items-center justify-between group">
+                            <span>📚 Trouver un manuel pratique de maniement de cartes haute précision</span>
+                            <button onclick="this.parentElement.remove()" class="text-charcoal-500 hover:text-terracotta-500 opacity-0 group-hover:opacity-100 transition-all">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </li>
+                        <li class="p-2.5 rounded-xl bg-white/60 border border-borderSoft/50 text-xs text-charcoal-800 flex items-center justify-between group">
+                            <span>🌱 Idée conteneur solaire modulable pour Madagascar</span>
+                            <button onclick="this.parentElement.remove()" class="text-charcoal-500 hover:text-terracotta-500 opacity-0 group-hover:opacity-100 transition-all">
+                                <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-borderSoft/60 text-[11px] text-charcoal-500 italic">
+                    Les idées mûrissent mieux lorsqu'elles sont posées sans filtre.
+                </div>
+            </div>
+
+            <!-- SECTION : BIBLIOTHÈQUE D'INSPIRATION -->
+            <div class="md:col-span-2 lg:col-span-2 glass-card rounded-3xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="bookmark" class="w-4 h-4 text-sage-800"></i>
+                        <h3 class="font-bold text-base text-charcoal-900">Inspirations & Esthétique</h3>
+                    </div>
+                    <span class="text-xs text-charcoal-500">Lectures & visuels</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3.5 rounded-2xl bg-white/60 border border-borderSoft/60 hover:bg-white transition-all">
+                        <span class="text-[10px] font-semibold text-terracotta-500 uppercase">Livre en cours</span>
+                        <h4 class="font-bold text-xs text-charcoal-900 mt-1">Atomic Habits</h4>
+                        <p class="text-[11px] text-charcoal-500 mt-0.5">James Clear • 1% chaque jour</p>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-white/60 border border-borderSoft/60 hover:bg-white transition-all">
+                        <span class="text-[10px] font-semibold text-sage-800 uppercase">Concept UX/UI</span>
+                        <h4 class="font-bold text-xs text-charcoal-900 mt-1">Calm Technology</h4>
+                        <p class="text-[11px] text-charcoal-500 mt-0.5">Design sans surcharge</p>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-white/60 border border-borderSoft/60 hover:bg-white transition-all">
+                        <span class="text-[10px] font-semibold text-charcoal-500 uppercase">Finance</span>
+                        <h4 class="font-bold text-xs text-charcoal-900 mt-1">The Psychology of Money</h4>
+                        <p class="text-[11px] text-charcoal-500 mt-0.5">Morgan Housel</p>
+                    </div>
+                    <div class="p-3.5 rounded-2xl bg-white/60 border border-borderSoft/60 hover:bg-white transition-all">
+                        <span class="text-[10px] font-semibold text-terracotta-500 uppercase">Art de vivre</span>
+                        <h4 class="font-bold text-xs text-charcoal-900 mt-1">Minimalisme Nordique</h4>
+                        <p class="text-[11px] text-charcoal-500 mt-0.5">Espaces & Lumière</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION : PROCHAINES DESTINATIONS -->
+            <div id="destinations" class="md:col-span-1 lg:col-span-2 glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-terracotta-500"></i>
+                            <h3 class="font-bold text-base text-charcoal-900">Prochaines Destinations</h3>
+                        </div>
+                        <span class="text-xs text-charcoal-500">Évasions prévues</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/60 border border-borderSoft/60">
+                            <div class="flex items-center gap-3">
+                                <span class="text-base">🇲🇬</span>
+                                <div>
+                                    <h4 class="font-semibold text-xs text-charcoal-900">Sainte-Marie & Analamanga</h4>
+                                    <span class="text-[10px] text-charcoal-500">Madagascar • Projet & Famille</span>
+                                </div>
+                            </div>
+                            <span class="text-xs font-medium text-sage-800 bg-sage-100 px-2.5 py-1 rounded-full">Été 2027</span>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/60 border border-borderSoft/60">
+                            <div class="flex items-center gap-3">
+                                <span class="text-base">🏔️</span>
+                                <div>
+                                    <h4 class="font-semibold text-xs text-charcoal-900">Massif de la Chartreuse</h4>
+                                    <span class="text-[10px] text-charcoal-500">France • Week-end Randonnée</span>
+                                </div>
+                            </div>
+                            <span class="text-xs font-medium text-terracotta-600 bg-terracotta-100 px-2.5 py-1 rounded-full">Printemps</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-xs text-charcoal-500 flex items-center gap-2">
+                    <i data-lucide="info" class="w-3.5 h-3.5"></i>
+                    <span>Chaque escapade nourrit la clarté d'esprit.</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- INTERACTIVE SCRIPT -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Intention Switcher Logic
+        function setIntention(type) {
+            const btnAvancer = document.getElementById('btn-avancer');
+            const btnExplorer = document.getElementById('btn-explorer');
+            const btnRepos = document.getElementById('btn-repos');
+            const bannerText = document.getElementById('intention-text');
+
+            // Reset styles
+            [btnAvancer, btnExplorer, btnRepos].forEach(btn => {
+                btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all text-charcoal-500 hover:bg-cream-100";
+            });
+
+            if (type === 'avancer') {
+                btnAvancer.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all bg-sage-500 text-white shadow-sm";
+                bannerText.textContent = "Focus du jour : Priorité à la régularité douce sur tes modules de formation et le suivi administratif.";
+            } else if (type === 'explorer') {
+                btnExplorer.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all bg-terracotta-400 text-white shadow-sm";
+                bannerText.textContent = "Focus du jour : Curiosité libre ! Explore les données de ton projet Madagascar ou lis un chapitre inspirant.";
+            } else if (type === 'repos') {
+                btnRepos.className = "px-3.5 py-1.5 rounded-xl text-xs font-medium flex items-center gap-1.5 transition-all bg-charcoal-800 text-white shadow-sm";
+                bannerText.textContent = "Focus du jour : Déconnexion totale. Recharge tes batteries, marche en plein air, sans culpabilité.";
+            }
+        }
+
+        // Add New Idea Functionality
+        function addIdea() {
+            const input = document.getElementById('idea-input');
+            const list = document.getElementById('idea-list');
+            const text = input.value.trim();
+
+            if (text !== "") {
+                const li = document.createElement('li');
+                li.className = "p-2.5 rounded-xl bg-white/60 border border-borderSoft/50 text-xs text-charcoal-800 flex items-center justify-between group transition-all";
+                li.innerHTML = `
+                    <span>💡 ${escapeHtml(text)}</span>
+                    <button onclick="this.parentElement.remove()" class="text-charcoal-500 hover:text-terracotta-500 opacity-0 group-hover:opacity-100 transition-all">
+                        <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                    </button>
+                `;
+                list.prepend(li);
+                input.value = "";
+                lucide.createIcons();
+            }
+        }
+
+        // Helper to prevent XSS
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // Keypress event for Idea input
+        document.getElementById('idea-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                addIdea();
+            }
+        });
+    </script>
+</body>
+</html>
